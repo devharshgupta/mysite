@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <link rel="shortcut icon" type="image/png" href="{% static 'icon.png' %}" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+  <script defer src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
+  <!-- <script defer src="other.js"></script> -->
+  <script defer src="{% static 'script.js'%}"></script>
+  <title>House Price Pridictor</title>
+</head>
+
+<body>
+  <div class="sidebar">
+
+
+
+    <ul class="workouts">
+      <li class="workout workout--running" data-id="1234567890">
+        <h2 class="workout__title">House Price Predictor</h2>
+
+      </li>
+      <form class="form" method="POST">
+        {% csrf_token %}
+
+        <div class="form__row">
+          <label class="form__label">Rera</label>
+          {{form.rera}}
+        </div>
+        <div class="form__row">
+          <label class="form__label">Built</label>
+          {{form.built}}
+        </div>
+        <div class="form__row">
+          <label class="form__label">Resale</label>
+          {{form.resale}}
+        </div>
+        <div class="form__row">
+          <label class="form__label">Bhk in no</label>
+          <!-- <input class="form__input form__input--distance" placeholder="2" />
+           -->
+          {{form.bhk}}
+        </div>
+
+        <div class="form__row">
+          <label class="form__label">Lattitude</label>
+          <!-- <input class="form__input form__input--cadence" placeholder="in sq foot" id="lat" /> -->
+          {{form.lat}}
+        </div>
+        <div class="form__row">
+          <label class="form__label">longitute</label>
+          <!-- <input class="form__input form__input--cadence formlong" placeholder="in sq foot" id="long" /> -->
+          {{form.long}}
+        </div>
+        <div class="form__row">
+          <label class="form__label">Area</label>
+          {{form.area}}
+          <!-- <input class="form__input form__input--cadence" placeholder="in sq foot" /> -->
+        </div>
+        <button type="submit">Calculate</button>
+      </form>
+
+      {% if price %}
+      <li class="workout workout--running" data-id="1234567890">
+        <h2 class="workout__title">Estimated Price = {{price}} Lakhs</h2>
+
+      </li>
+      {% endif %}
+
+
+
+    </ul>
+
+    <p class="copyright">
+      Made with ❤️ by
+      <a class="twitter-link" target="_blank" href="https://hiharsh.netlify.app/">Harsh gupta</a>
+      ,Ramkrushna Naik and Arjun Tomor
+      <br>
+      Under the guidence of our honorable 🎓 professor Mr.Ishan Kumar
+
+    </p>
+  </div>
+
+  <div id="map">
+    <h1>Please allow map to fetch your location</h1>
+  </div>
+</body>
+
+</html>
